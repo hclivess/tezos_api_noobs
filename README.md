@@ -6,7 +6,7 @@ A collection of community scripts to access public Tezos API and collect data fr
 - `git clone https://github.com/hclivess/tezos_api_noobs`
 - `sudo apt-get install Python3.9`
 - `sudo apt install python3-pip`
-- `sudo Python3.9 -m pip install -f requirements.txt`
+- `sudo Python3.9 -m pip install -r requirements.txt`
 - `sudo Python3.9 [filename].py`
 
 All `.json` files are just structured examples of individual operations for easy navigation in element identification.
@@ -14,7 +14,7 @@ All `.json` files are just structured examples of individual operations for easy
 ## API data structure
 There are two types of data structures in this API:
 ### list
-- introduced as `[]`
+- introduced with `[]`
 - example: `["hello", 100, 500, "world"]`
 
 #### we access list values with index numbers:
