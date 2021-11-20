@@ -4,8 +4,7 @@ import requests
 decimals = 1000000000000000000
 
 contract = "KT1PxkrCckgh5fA5v2cZEE2bX5q2RV1rv8dj"
-level=""
-url = f"https://api.better-call.dev/v1/contract/mainnet/{contract}/operations?level={level}"
+url = f"https://api.better-call.dev/v1/contract/mainnet/{contract}/operations"
 
 result = json.loads(requests.get(url).text)
 entry_filter = ["buy", "sell"]
