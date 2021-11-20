@@ -37,4 +37,4 @@ What API usually returns are combined and nested data structures, simplified exa
 - `[{transactions: ["{"name": "transaction1", "value": 50}, {"name": "transaction2", "value": 50}}]`
 
 To see how this is done in practice, open individual Python files in this directory. Examples returned for each of this files are stored in the corresponding json files.
-To format a json file, try a service like  [curiousconcept url formatter](https://jsonformatter.curiousconcept.com).
+To format a json file to make it more readable, try a service like  [curiousconcept url formatter](https://jsonformatter.curiousconcept.com).
