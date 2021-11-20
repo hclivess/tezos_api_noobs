@@ -30,7 +30,7 @@ There are two types of data structures in this API:
 #### we access dictionary values with keys
 - `dictionary["operation"]` returns `"sell"`
 - `dictionary["name"]` returns `"john"`
-- `dictionary["operation"]` returns `50`
+- `dictionary["age"]` returns `50`
 
 ### combined data structures
 What API usually returns are combined and nested data structures, simplified examples:
