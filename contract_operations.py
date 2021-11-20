@@ -5,6 +5,7 @@ decimals = 1000000000000000000
 
 contract = "KT1PxkrCckgh5fA5v2cZEE2bX5q2RV1rv8dj"
 url = f"https://api.better-call.dev/v1/contract/mainnet/{contract}/operations"
+print(url)
 
 result = json.loads(requests.get(url).text)
 entry_filter = ["buy", "sell"]
