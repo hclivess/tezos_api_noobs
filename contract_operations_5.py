@@ -32,7 +32,6 @@ def save_data(data):
 
 
 decimals = 1000000000000000000
-time_now = time.time()
 
 contract = "KT1PxkrCckgh5fA5v2cZEE2bX5q2RV1rv8dj"
 origination = 1734719
