@@ -49,30 +49,27 @@ end = last_block()
 for block in range(start, end + 1):
     print(f"Processing block {block}")
 
-    entry_points = ["burn", "mint"]
     for_output = {'last_block': block}
 
-    for entry_point in entry_points:
-        print(f"Looking for {entry_point}s")
-        url = f"https://api.tzkt.io/v1/operations/transactions?sender={contract}" \
-              f"&entrypoint={entry_point}" \
-              f"&status=applied" \
-              f"&level={block}"
+    url = f"https://api.tzkt.io/v1/operations/transactions?sender={contract}" \
+          f"&entrypoint.in=burn,mint" \
+          f"&status=applied" \
+          f"&level={block}"
 
-        operations = fetch_url(url)
+    operations = fetch_url(url)
 
-        for operation in operations:
-            print(f"Processing operation {operation}")
-            value_readable = int(operation["parameter"]["value"]["value"]) / decimals
+    for operation in operations:
+        print(f"Processing operation {operation}")
+        value_readable = int(operation["parameter"]["value"]["value"]) / decimals
 
-            print(f'{operation["initiator"]["address"]} applied '
-                  f'{operation["parameter"]["entrypoint"]} of '
-                  f'{operation["parameter"]["value"]["value"]}'
-                  f', which is {value_readable}')
+        print(f'{operation["initiator"]["address"]} applied '
+              f'{operation["parameter"]["entrypoint"]} of '
+              f'{operation["parameter"]["value"]["value"]}'
+              f', which is {value_readable}')
 
-            for_output[operation["hash"]] = operation
+        for_output[operation["hash"]] = operation
 
-        merged = {**previous_data, **for_output}
+    merged = {**previous_data, **for_output}
 
-        if operations:
-            save_data(merged)
+    if operations:
+        save_data(merged)
