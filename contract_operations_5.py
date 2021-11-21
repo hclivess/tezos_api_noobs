@@ -2,10 +2,17 @@ import json
 import requests
 import time
 
+def fetch_url(url):
+    while True:
+        try:
+            fetched = json.loads(requests.get(url).text)
+            return fetched
+        except Exception as e:
+            print(f"{url} unreachable due to {e}, retrying")
 
 def last_block():
     url = "https://api.tzkt.io/v1/head"
-    result = json.loads(requests.get(url).text)
+    result = fetch_url(url)
     return result["level"]
 
 
@@ -53,7 +60,7 @@ for block in range(start, end + 1):
               f"&status=applied" \
               f"&level={block}"
 
-        operations = json.loads(requests.get(url).text)
+        operations = fetch_url(url)
 
         for operation in operations:
             print(f"Processing operation {operation}")
