@@ -69,6 +69,7 @@ for block in range(start, end + 1):
 
         for_output[operation["hash"]] = operation
 
+    previous_data = load_previous()
     merged = {**previous_data, **for_output}
 
     if operations:
