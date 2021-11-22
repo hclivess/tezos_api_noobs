@@ -2,6 +2,7 @@ import json
 import requests
 import time
 
+
 def fetch_url(url):
     while True:
         try:
@@ -10,7 +11,8 @@ def fetch_url(url):
         except Exception as e:
             print(f"{url} unreachable due to {e}, retrying")
 
-def last_block():
+
+def get_last_block():
     url = "https://api.tzkt.io/v1/head"
     result = fetch_url(url)
     return result["level"]
@@ -31,20 +33,25 @@ def save_data(data):
         print("file saved")
 
 
+def get_last_saved_block():
+    previous_data = load_previous()
+
+    try:
+        last_saved = previous_data["stats"]["last_block"]
+    except Exception as e:
+        last_saved = origination
+    return last_saved
+
+
 decimals = 1000000000000000000
 
 contract = "KT1PxkrCckgh5fA5v2cZEE2bX5q2RV1rv8dj"
 origination = 1734719
 # level = 1735011
 
-previous_data = load_previous()
 
-try:
-    start = previous_data["stats"]["last_block"]
-except Exception as e:
-    start = origination
-
-end = last_block()
+start = get_last_saved_block()
+end = get_last_block()
 
 for block in range(start, end + 1):
     print(f"Processing block {block}")
@@ -74,6 +81,7 @@ for block in range(start, end + 1):
                                          "timestamp": operation["timestamp"]
                                          }
 
+    previous_data = load_previous()
     merged = {**previous_data, **for_output}
 
     if operations:
